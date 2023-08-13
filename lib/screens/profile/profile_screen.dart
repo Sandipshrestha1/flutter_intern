@@ -1,18 +1,13 @@
-//import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:phase1/Authentication/signup_Screen.dart';
+import 'package:phase1/Authentication/sign_up_screen.dart';
 import 'package:phase1/model/userModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-//import '../Authentication/login_screen.dart';
-
 class Profile extends StatefulWidget {
-  const Profile({
-    super.key,
-    userModel? loginUsers,
-  });
+  const Profile({Key? key}) : super(key: key);
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -28,11 +23,10 @@ class _ProfileState extends State<Profile> {
   @override
   void initState() {
     super.initState();
-    getAllUserData();
-    getUserId();
+    setData();
   }
 
-  Future<List<String>> getAllUserData() async {
+  Future<void> getAllUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? jsonData = prefs.getString('dataList');
     if (jsonData != null) {
@@ -43,46 +37,40 @@ class _ProfileState extends State<Profile> {
           profileList = decodedData.map((e) => userModel.fromJson(e)).toList();
         });
       } catch (e) {
-        print("error occure ${e}");
+        print("error occurred: $e");
       }
-    } else {
-      profileList = [];
     }
-    return [];
   }
 
-  Future<List<String>> getUserId() async {
+  Future<void> getUserId() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? userIdData = prefs.getString('userID');
 
     if (userIdData != null) {
       try {
-        // final decodedData = json.decode(userIdData) as List<dynamic>;
         loginUsers =
             profileList.firstWhere((user) => user.id.toString() == userIdData);
-        print("Image12: ${loginUsers!.coverimage}");
       } catch (e) {
-        print(e);
+        print("error occurred: $e");
       }
-    } else {
-      loginUsers;
     }
-    return [];
+  }
+
+  Future<void> setData() async {
+    await getAllUserData();
+    await getUserId();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // actions: [],
         title: const Text("Profile Page"),
         centerTitle: true,
       ),
       body: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          //buildTop(),
-
           Stack(
             clipBehavior: Clip.none,
             children: [
@@ -95,43 +83,30 @@ class _ProfileState extends State<Profile> {
                 ),
                 child: loginUsers?.coverimage.path != ""
                     ? Image.file(
-                        loginUsers!.coverimage,
+                        loginUsers?.coverimage ?? File(''),
                         height: double.infinity,
                         width: double.infinity,
                         fit: BoxFit.cover,
                       )
                     : const Text('No cover picture'),
               ),
-              Container(
-                height: 200,
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  color: Colors.grey,
-                ),
-                child: Image.file(
-                  loginUsers!.coverimage,
-                  height: double.infinity,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-              ),
               Positioned(
                 top: 140,
-                left: MediaQuery.of(context).size.width / 2 - 80,
+                left: 20,
                 child: Container(
                   height: 140,
                   width: 140,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white, width: 5),
+                    border: Border.all(color: Colors.green, width: 3),
                   ),
                   child: Container(
                     height: 150,
                     width: 150,
                     decoration: const BoxDecoration(
                         shape: BoxShape.circle, color: Colors.white),
-                    child: loginUsers?.profileimage.path != ""
+                    child: loginUsers?.profileimage.path != null &&
+                            loginUsers!.profileimage.path.isNotEmpty
                         ? CircleAvatar(
                             backgroundColor: Colors.blue,
                             radius: 50,
@@ -141,47 +116,112 @@ class _ProfileState extends State<Profile> {
                         : const Text('No Image'),
                   ),
                 ),
-              )
+              ),
             ],
           ),
-
           SizedBox(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 90),
-                  loginUsers?.fullName != ""
-                      ? Text(' Name: ${loginUsers!.fullName}',
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16))
-                      : const Text('No Name'),
-                  const SizedBox(
-                    height: 10,
+                  Column(
+                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+
+                        // mainAxisSize: MainAxisSize.max,
+                        // crossAxisAlignment: CrossAxisAlignment.,
+                        children: [
+                          // ElevatedButton(
+                          //   onPressed: () {},
+                          //   // child: const Text("Add story"),
+                          //   child: Row(
+                          //     children: [
+                          //       Icon(Icons.add),
+                          //       const SizedBox(width: 5),
+                          //       Text("Add story"),
+                          //     ],
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   width: 5,
+                          // ),
+                          // ElevatedButton(
+                          //   onPressed: () {},
+                          //   child: const Text("Edit"),
+                          // ),
+                          Row(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.blue,
+                                ),
+                                child: const Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Add story"),
+                                    Icon(Icons.add),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.green,
+                                ),
+                                child: const Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Edit"),
+                                    Icon(Icons.edit),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      )
+                    ],
                   ),
-                  loginUsers?.email != ""
-                      ? Text(
-                          ' Email: ${loginUsers!.email}',
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      : const Text('No Email'),
+                  const SizedBox(height: 90),
+                  Text(
+                    loginUsers?.fullName ?? 'No Name',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'Email: ${loginUsers?.email ?? "No Email"}',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   const SizedBox(height: 10),
                   const Divider(
                     height: 20,
                     thickness: 4,
                     color: Colors.green,
                   ),
-                  const Text('Phone Number',
-                      //  textAlign: TextAlign.right,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  const Text(
+                    'Phone Number',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   const SizedBox(height: 3),
                   ListTile(
                     leading: const CircleAvatar(
                       child: Icon(Icons.phone),
                     ),
                     title: Text(
-                      ' ${loginUsers!.mobileNumber}',
+                      ' ${loginUsers?.mobileNumber ?? "No Mobile Number"}',
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     subtitle: const Text("Mobile Number"),
@@ -191,16 +231,17 @@ class _ProfileState extends State<Profile> {
                     thickness: 2,
                     color: Colors.red,
                   ),
-                  const Text('Gender',
-                      //  textAlign: TextAlign.right,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  const Text(
+                    'Gender',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   const SizedBox(height: 3),
                   ListTile(
                     leading: const CircleAvatar(
                       child: Icon(Icons.person),
                     ),
                     title: Text(
-                      '${loginUsers!.gender}',
+                      ' ${loginUsers?.gender ?? "No Gender"}',
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     subtitle: const Text("Gender"),
@@ -210,16 +251,19 @@ class _ProfileState extends State<Profile> {
                     thickness: 2,
                     color: Colors.red,
                   ),
-                  const Text('Date of Birth',
-                      //  textAlign: TextAlign.right,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  const Text(
+                    'Date of Birth',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   const SizedBox(height: 3),
                   ListTile(
                     leading: const CircleAvatar(
                       child: Icon(Icons.cake),
                     ),
-                    title: Text('${loginUsers!.dob}',
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
+                    title: Text(
+                      ' ${loginUsers?.dob ?? "No Date of Birth"}',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     subtitle: const Text("Date of Birth"),
                   ),
                   const Divider(
@@ -227,16 +271,19 @@ class _ProfileState extends State<Profile> {
                     thickness: 2,
                     color: Colors.red,
                   ),
-                  const Text('RelationShip',
-                      //  textAlign: TextAlign.right,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  const Text(
+                    'RelationShip',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   const SizedBox(height: 3),
                   ListTile(
                     leading: const CircleAvatar(
                       child: Icon(Icons.logo_dev),
                     ),
-                    title: Text('${loginUsers!.maritialStatus}',
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
+                    title: Text(
+                      ' ${loginUsers?.maritialStatus ?? "No Marritial Status"}',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     subtitle: const Text("Marritial Status"),
                   ),
                   const Divider(
@@ -244,8 +291,10 @@ class _ProfileState extends State<Profile> {
                     thickness: 2,
                     color: Colors.red,
                   ),
-                  const Text("Working Experience",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  const Text(
+                    "Working Experience",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   const ListTile(
                     leading: CircleAvatar(
                       child: Icon(Icons.work),
@@ -264,15 +313,18 @@ class _ProfileState extends State<Profile> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Screen1()));
-                          },
-                          child: const Text("Log out "))
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Screen1(),
+                            ),
+                          );
+                        },
+                        child: const Text("Log out"),
+                      )
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

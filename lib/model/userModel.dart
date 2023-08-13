@@ -12,6 +12,8 @@ class userModel {
   File profileimage;
   File coverimage;
 
+  var userId;
+
   userModel(
       {this.id,
       this.fullName,
@@ -35,7 +37,7 @@ class userModel {
     //   coverimage = File(json["coverimage"]);
     // }
 
-    String profilepath = json["profileimage"] ?? "";
+    String profilepath = json["image"] ?? "";
     String coverpath = json["coverimage"] ?? "";
     return userModel(
       id: json["id"],

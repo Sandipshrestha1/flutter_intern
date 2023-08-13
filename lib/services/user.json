@@ -8,7 +8,8 @@
         "gender": "Male",
         "dob": "2000-11-01",
         " maritialStatus": "Single",
-        "image": null
+        "image": "",
+        "imageUrl": "assets/person1.jpg"
     },
     {
         "id": "2",
@@ -19,7 +20,8 @@
         "gender": "Male",
         "dob": "2018-12-12",
         " maritialStatus": "Single",
-        "image": null
+        "image": "",
+        "imageUrl": "assets/person1.jpg"
     },
     {
         "id": "3",
@@ -30,7 +32,8 @@
         "gender": "Male",
         "dob": "2001-12-12",
         " maritialStatus": "Single",
-        "image": null
+        "image": "",
+        "imageUrl": "assets/person1.jpg"
     },
     {
         "id": "4",
@@ -41,7 +44,8 @@
         "gender": "Male",
         "dob": "2018-12-12",
         " maritialStatus": "Married",
-        "image": null
+        "image": "",
+        "imageUrl": "assets/person1.jpg"
     },
     {
         "id": "5",
@@ -52,7 +56,8 @@
         "gender": "Male",
         "dob": "2001-01-12",
         " maritialStatus": "Single",
-        "image": null
+        "image": "",
+        "imageUrl": "assets/profile/1.jpg"
     },
     {
         "id": "6",
@@ -63,7 +68,8 @@
         "gender": "Male",
         "dob": "2018-12-12",
         " maritialStatus": "Single",
-        "image": null
+        "image": "",
+        "imageUrl": "assets/person1.jpg"
     },
     {
         "id": "7",
@@ -74,7 +80,8 @@
         "gender": "Male",
         "dob": "2018-12-12",
         " maritialStatus": "Single",
-        "image": null
+        "image": "",
+        "imageUrl": "assets/person1.jpg"
     },
     {
         "id": "8",
@@ -85,7 +92,8 @@
         "gender": "Male",
         "dob": "2018-12-12",
         " maritialStatus": "Single",
-        "image": null
+        "image": "",
+        "imageUrl": "assets/person1.jpg"
     },
     {
         "id": "9",
@@ -96,7 +104,8 @@
         "gender": "Male",
         "dob": "2018-12-12",
         " maritialStatus": "Single",
-        "image": null
+        "image": "",
+        "imageUrl": "assets/person1.jpg"
     },
     {
         "id": "10",
@@ -107,6 +116,7 @@
         "gender": "Male",
         "dob": "2018-12-12",
         " maritialStatus": "Single",
-        "image": null
+        "image": "",
+        "imageUrl": "assets/person1.jpg"
     }
 ]

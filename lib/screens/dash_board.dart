@@ -1,46 +1,42 @@
-// ignore_for_file: prefer_const_constructors, use_build_context_synchronously
-// import 'package:phase1/model/userModel.dart';
-
 import 'package:flutter/material.dart';
-import 'package:phase1/Authentication/login_screen.dart';
-import 'package:phase1/screens/home_page.dart';
+import 'package:phase1/model/userModel.dart';
+import 'package:phase1/screens/posts/first_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../model/userModel.dart';
-import 'friends.dart';
-import 'markets.dart';
-import 'profile_screen.dart';
+import '../Authentication/login_screen.dart';
+import 'friends/friends.dart';
+import 'market/markets.dart';
+import 'profile/profile_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class Dashboard extends StatefulWidget {
+  const Dashboard({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<Dashboard> createState() => _DashboardState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   late TabController _tabController;
-
   late SharedPreferences logindata;
   late String username;
 
   @override
   void initState() {
     super.initState();
+    initLogindata();
     _tabController = TabController(length: 3, vsync: this);
+  }
+
+  Future<void> initLogindata() async {
+    logindata = await SharedPreferences.getInstance();
+    setState(() {
+      username = logindata.getString('username')!;
+    });
   }
 
   @override
   void dispose() {
-    _tabController.dispose(); // Dispose the TabController
+    _tabController.dispose();
     super.dispose();
-  }
-
-  void initial() async {
-    logindata = await SharedPreferences.getInstance();
-
-    setState(() {
-      username = logindata.getString('username')!;
-    });
   }
 
   @override
@@ -75,60 +71,56 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               onPressed: () {
                 showSearch(
                   context: context,
-                  delegate: CustomeSearch(),
+                  delegate: CustomSearch(),
                 );
-                // showSearch(
-                //   context: context,
-                //   delegate: CustomSearch(),
-                // );
               },
               icon: const Icon(Icons.search),
             ),
           ],
-          bottom: TabBar(
-            controller: _tabController,
-            labelColor: Colors.blue,
-            labelStyle:
-                const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            unselectedLabelColor: Colors.grey,
-            unselectedLabelStyle: const TextStyle(fontSize: 18),
-            indicatorWeight: 3.0,
-            tabs: const [
-              Tab(text: 'Home', icon: Icon(Icons.home)),
-              Tab(
-                  text: 'Market',
-                  icon: Icon(Icons.shopping_cart_checkout_sharp)),
-              Tab(text: 'Friends', icon: Icon(Icons.family_restroom_outlined)),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Container(
+                height: 45,
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(25.0),
+                ),
+                child: TabBar(
+                  indicator: BoxDecoration(
+                    color: Colors.green[400],
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                  labelColor: Colors.white,
+                  unselectedLabelColor: Colors.black,
+                  tabs: const [
+                    Tab(text: "Home"),
+                    Tab(text: "Market"),
+                    Tab(text: "Friends")
+                  ],
+                ),
+              ),
+              Expanded(
+                  child: TabBarView(children: [
+                const FirstScreen(),
+                const MarketScreen(),
+                Friends(),
+              ]))
             ],
           ),
-        ),
-        body: TabBarView(
-          // controller: controller,
-          children: const [
-            HomePage(),
-            Markets(),
-            Friends(),
-          ],
         ),
       ),
     );
   }
 }
 
-/// Search Screen
-class CustomeSearch extends SearchDelegate {
-  // List<String> userList = [
-  //   "Ram",
-  //   "shyam",
-  //   "Hari",
-  //   "Gita",
-  //   "Sita",
-  //   "Rita",
-  //   "unknown",
-  // ];
+// ... CustomSearch class remains unchanged ...
 
+class CustomSearch extends SearchDelegate {
   @override
-  List<Widget>? buildActions(BuildContext context) {
+  List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
         onPressed: () {
@@ -140,7 +132,7 @@ class CustomeSearch extends SearchDelegate {
   }
 
   @override
-  Widget? buildLeading(BuildContext context) {
+  Widget buildLeading(BuildContext context) {
     return IconButton(
       onPressed: () {
         close(context, null);
@@ -163,8 +155,8 @@ class CustomeSearch extends SearchDelegate {
           onTap: () async {
             SharedPreferences prefs = await SharedPreferences.getInstance();
             prefs.setString('profileId', result.id.toString());
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Friends()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Friends()));
           },
           child: Card(
             color: Colors.green,
@@ -191,24 +183,6 @@ class CustomeSearch extends SearchDelegate {
         );
       },
     );
-
-//   @override
-//   Widget buildSuggestions(BuildContext context) {
-//     List<String> matchQuery = [];
-//     for (var user in userList) {
-//       if (user.toLowerCase().contains(query.toLowerCase())) {
-//         matchQuery.add(query);
-//       }
-//     }
-
-//     return ListView.builder(
-//       itemCount: matchQuery.length,
-//       itemBuilder: (context, index) {
-//         return ListTile(
-//           title: Text(matchQuery[index]),
-//         );
-//       },
-//     );
   }
 
   @override
@@ -216,11 +190,6 @@ class CustomeSearch extends SearchDelegate {
     List<userModel> matchQuery = usersData.where((user) {
       return user.fullName!.toLowerCase().contains(query.toLowerCase());
     }).toList();
-    // for (var user in userList) {
-    //   if (user.toLowerCase().contains(query.toLowerCase())) {
-    //     matchQuery.add(query);
-    //   }
-    //}
 
     return ListView.builder(
       itemCount: matchQuery.length,
@@ -230,8 +199,8 @@ class CustomeSearch extends SearchDelegate {
           onTap: () async {
             SharedPreferences prefs = await SharedPreferences.getInstance();
             prefs.setString('profileId', result.id.toString());
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Friends()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Friends()));
           },
           child: Card(
             color: Colors.green,

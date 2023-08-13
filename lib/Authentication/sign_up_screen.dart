@@ -1,13 +1,12 @@
-// ignore_for_file: use_build_context_synchronously
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:phase1/json/signup_details.dart';
-import 'package:phase1/widgets/login_signup.dart';
+import 'package:phase1/model/userModel.dart';
+import 'package:phase1/widgets/widget_formtext.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
-import '../model/userModel.dart';
 import 'login_screen.dart';
 import 'package:uuid/uuid.dart';
 
@@ -23,11 +22,10 @@ class Screen1 extends StatefulWidget {
 class _Screen1State extends State<Screen1> {
   final _formKey = GlobalKey<FormState>();
   String _gender = '';
-  // File? profileimage;
-  // File? coverimage;
+  File? profileimage;
+  File? coverimage;
 
-  File? profileimage; // Initialize profile image
-  File? coverimage; // Initialize cover image
+  //File? profileimage; // Initialize profile image
   List<Usermodel> user = [];
   final ImagePicker picker = ImagePicker();
   String selectValue = 'Married';
@@ -40,21 +38,37 @@ class _Screen1State extends State<Screen1> {
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController dateController = TextEditingController();
+  // final picker = ImagePicker();
 
-  Future<void> _pickImage(ImageSource source) async {
+  Future<void> _pickprofileImage(ImageSource source) async {
     try {
-      final pickedprofileImage = await picker.pickImage(source: source);
+      final pickedProfileImage = await picker.pickImage(source: source);
 
-      if (pickedprofileImage == null) return;
+      if (pickedProfileImage == null) return;
 
       setState(() {
-        profileimage = File(pickedprofileImage.path);
+        profileimage = File(pickedProfileImage.path);
       });
-      print("Image is comming");
+      //print("Image is coming");
     } catch (e) {
       print('Error picking image: $e');
     }
   }
+  // Future takephoto(ImageSource source) async {
+  //   try {
+  //     final pickedProfile = await picker.pickImage(source: source);
+  //     if (pickedProfile == null) return;
+  //     String imagePath = pickedProfile.path;
+  //     File? img = File(imagePath);
+  //     setState(() {
+  //       profileimage = img;
+  //       Navigator.of(context).pop();
+  //     });
+  //   } catch (e) {
+  //     //rethrow;
+  //     Navigator.of(context).pop();
+  //   }
+  // }
 
   //// cover image
   Future<void> pickcoverImage(ImageSource source) async {
@@ -91,7 +105,7 @@ class _Screen1State extends State<Screen1> {
   void signUp() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     final jsonString = sharedPreferences.getString('dataList');
-    print(jsonString);
+    // print(jsonString);
     if (jsonString != null) {
       try {
         final jsonData = jsonDecode(jsonString);
@@ -102,6 +116,7 @@ class _Screen1State extends State<Screen1> {
         } else if (jsonData is Map<String, dynamic>) {
           loginEmptyList
               .addAll(userModel.fromJson(jsonData) as Map<String, dynamic>);
+          print(signupList);
         }
       } catch (e) {
         rethrow;
@@ -148,6 +163,8 @@ class _Screen1State extends State<Screen1> {
     loginEmptyList[emailController.text] = jsonDataList;
     String jsonData = json.encode(jsonDataList);
     sharedPreferences.setString('dataList', jsonData);
+
+    // print("JSONDATA::: $jsonData");
 
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => const LoginScreen()));
@@ -234,9 +251,10 @@ class _Screen1State extends State<Screen1> {
                                             title:
                                                 const Text('Pick from gallery'),
                                             onTap: () {
-                                              _pickImage(ImageSource.gallery);
+                                              _pickprofileImage(
+                                                  ImageSource.gallery);
                                               Navigator.of(context).pop();
-                                              print("Image is comming");
+                                              // print("Image is comming");
                                             },
                                           ),
                                           ListTile(
@@ -244,7 +262,8 @@ class _Screen1State extends State<Screen1> {
                                                 const Icon(Icons.camera_alt),
                                             title: const Text('Take a photo'),
                                             onTap: () {
-                                              _pickImage(ImageSource.camera);
+                                              _pickprofileImage(
+                                                  ImageSource.camera);
                                               Navigator.of(context).pop();
                                             },
                                           ),
@@ -482,7 +501,7 @@ class _Screen1State extends State<Screen1> {
                                         leading: const Icon(Icons.camera_alt),
                                         title: const Text('Take a photo'),
                                         onTap: () {
-                                          pickcoverImage(ImageSource.camera);
+                                          _pickprofileImage(ImageSource.camera);
                                           Navigator.of(context).pop();
                                         },
                                       ),

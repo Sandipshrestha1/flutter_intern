@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 Widget formtext({
-  required String labeltext,
-  required String hinttext,
+  //required String
+  labeltext,
+  //required String
+  hinttext,
   controller,
   validate,
   keyType,

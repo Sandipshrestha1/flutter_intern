@@ -1,15 +1,12 @@
-// ignore_for_file: use_build_context_synchronously, non_constant_identifier_names
 import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-//import 'package:get/get.dart';
 import 'package:phase1/model/userModel.dart';
-//import 'package:phase1/screens/home_page.dart';
-import 'package:phase1/screens/home_screens.dart';
+import 'package:phase1/screens/dash_board.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-//import '../screens/home_page.dart';
-import '../widgets/login_signup.dart';
-import 'signup_Screen.dart';
+import '../widgets/widget_formtext.dart';
+import 'sign_up_screen.dart';
 
 List<userModel> usersData = [];
 
@@ -22,23 +19,30 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isVisible = true;
+  bool value = false;
   late SharedPreferences logindata;
   late bool newuser;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  // }
+  Future<void> initLogindata() async {
+    logindata = await SharedPreferences.getInstance();
+  }
+
+  Future<void> removeDataFromSharedPreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.remove('dataList');
+    });
+  }
 
   void check_if_already_login() async {
     logindata = await SharedPreferences.getInstance();
     newuser = (logindata.getBool('login') ?? true);
 
-    print(newuser);
-    if (newuser == false) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
-    }
+    // print(newuser);
+    // if (newuser == false) {
+    //   Navigator.push(
+    //       context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+    // }
   }
 
   Future<void> fetchUserData() async {
@@ -46,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
       final jsonData = sharedPreferences.getString('dataList');
-      //  print(jsonData);
+      log(jsonData.toString());
 
       if (jsonData == null) {
         String jsonData = await rootBundle.loadString('lib/services/user.json');
@@ -71,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<List<String>> getUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? jsonData = prefs.getString('dataList');
-    print(jsonData);
+    (jsonData);
     if (jsonData != null) {
       try {
         final decodedData = json.decode(jsonData) as List<dynamic>;
@@ -91,20 +95,18 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> performLogin(String emaill, String passwordd) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      userModel? users = usersData.firstWhere(
-        (user) => user.email == emaill && user.password == passwordd,
-      );
+      if (usersData.isNotEmpty) {
+        userModel? users = usersData.firstWhere(
+          (user) => user.email == emaill && user.password == passwordd,
+        );
 
-      prefs.setString('userID', users.id.toString());
+        prefs.setString('userID', users.id.toString());
 
-      prefs.setString('email', emaill); // Add this line
+        prefs.setString('email', emaill); // Add this line
 
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => const HomeScreen /*Profile  */ ()));
-
-      // Return true here for successful login
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Dashboard()));
+      } // Return true here for successful login
     } catch (e) {
       //rethrow;
 
@@ -139,8 +141,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    getUserData();
     fetchUserData();
+    initLogindata(); // Initialize logindata here
+    getUserData();
+
     check_if_already_login();
   }
 
@@ -268,15 +272,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      performLogin(emailController.text, pswdController.text);
+                      await performLogin(
+                          emailController.text, pswdController.text);
 
                       logindata.setBool('login', false);
-
-                      logindata.setString('email', emailController.text);
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const HomeScreen()));
                     }
                   },
                   child: const Text("Login"),
@@ -299,7 +298,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: const Text("SignUp"),
                     ),
                   ],
-                )
+                ),
+
+                ElevatedButton(
+                  onPressed: () {
+                    removeDataFromSharedPreferences();
+                  },
+                  child: const Text("Clear Data"),
+                ),
               ],
             ),
           ),
