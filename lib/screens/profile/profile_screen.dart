@@ -192,7 +192,7 @@ class _ProfileState extends State<Profile> {
                       )
                     ],
                   ),
-                  const SizedBox(height: 90),
+                  const SizedBox(height: 50),
                   Text(
                     loginUsers?.fullName ?? 'No Name',
                     style: const TextStyle(

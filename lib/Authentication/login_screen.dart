@@ -150,13 +150,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Login Form"),
-          centerTitle: true,
-        ),
-        body: Container(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Login Form"),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Container(
           padding: const EdgeInsets.all(29),
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.zero),

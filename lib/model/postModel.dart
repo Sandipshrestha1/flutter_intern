@@ -81,7 +81,7 @@ class _AddPostState extends State<AddPost> {
   void postDetails() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     final jsonString = sharedPreferences.getString('profileData');
-    //  print(jsonString);
+    print(jsonString);
     if (jsonString != null) {
       try {
         final jsonData = jsonDecode(jsonString);
@@ -99,7 +99,7 @@ class _AddPostState extends State<AddPost> {
     post.add(
       PostModel(
         photo: postImage,
-        userId: widget.loginUsers!.userId,
+        userId: widget.loginUsers!.id,
         postid: const Uuid().v4(),
         description: descController.text,
         postedataa: DateTime.now().toString(),
@@ -110,7 +110,7 @@ class _AddPostState extends State<AddPost> {
     List<Map<String, dynamic>> profileDataList =
         post.map((e) => e.toJson()).toList();
     String? profileData = jsonEncode(profileDataList);
-    // print('profileData');
+    print('profileData');
     SharedPreferences sharedPreference = await SharedPreferences.getInstance();
     sharedPreference.setString('profileData', profileData);
   }

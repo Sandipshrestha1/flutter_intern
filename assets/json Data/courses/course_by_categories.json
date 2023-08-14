@@ -1,0 +1,62 @@
+[
+    {
+        "Course_by_id": 1,
+        "Course_id": 1,
+        "Categories_id": 101,
+        "Created_at": "2023-08-13"
+    },
+    {
+        "Course_by_id": 2,
+        "Course_id": 2,
+        "Categories_id": 102,
+        "Created_at": "2023-08-13"
+    },
+    {
+        "Course_by_id": 3,
+        "Course_id": 3,
+        "Categories_id": 103,
+        "Created_at": "2023-08-13"
+    },
+    {
+        "Course_by_id": 4,
+        "Course_id": 4,
+        "Categories_id": 104,
+        "Created_at": "2023-08-13"
+    },
+    {
+        "Course_by_id": 5,
+        "Course_id": 5,
+        "Categories_id": 105,
+        "Created_at": "2023-08-13"
+    },
+    {
+        "Course_by_id": 6,
+        "Course_id": 6,
+        "Categories_id": 106,
+        "Created_at": "2023-08-13"
+    },
+    {
+        "Course_by_id": 7,
+        "Course_id": 7,
+        "Categories_id": 107,
+        "Created_at": "2023-08-13"
+    },
+    {
+        "Course_by_id": 8,
+        "Course_id": 8,
+        "Categories_id": 108,
+        "Created_at": "2023-08-13"
+    },
+    {
+        "Course_by_id": 9,
+        "Course_id": 9,
+        "Categories_id": 109,
+        "Created_at": "2023-08-13"
+    },
+    {
+        "Course_by_id": 10,
+        "Course_id": 10,
+        "Categories_id": 110,
+        "Created_at": "2023-08-13"
+    }
+]

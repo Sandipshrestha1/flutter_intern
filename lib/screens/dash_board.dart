@@ -104,8 +104,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
               ),
               Expanded(
                   child: TabBarView(children: [
-                const FirstScreen(),
-                const MarketScreen(),
+                FirstScreen(),
+                MarketScreen(),
                 Friends(),
               ]))
             ],

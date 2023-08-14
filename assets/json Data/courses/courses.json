@@ -1,0 +1,410 @@
+[
+    {
+        "Id": 1,
+        "Title": "Course 1 Title",
+        "Sub title": "Course 1 Subtitle",
+        "Description": "Description of Course 1",
+        "Overview": "Overview of Course 1",
+        "Instructor": [
+            "Instructor 1",
+            "Instructor 2"
+        ],
+        "instructor_id": 101,
+        "Image": "course1.jpg",
+        "Price": 99.99,
+        "Skills": [
+            "Skill A",
+            "Skill B"
+        ],
+        "Is_top_course": true,
+        "Is_recently_viewed_course": false,
+        "Syllabus": [
+            {
+                "Id": 1,
+                "Title": "Module 1",
+                "Summary": "Summary of Module 1",
+                "Total content": 10,
+                "Hours to completed": 5.5,
+                "FAQ": [
+                    {
+                        "Id": 1,
+                        "Title": "FAQ 1",
+                        "Subtitle": "FAQ 1 Subtitle",
+                        "Description": "FAQ 1 Description"
+                    },
+                    {
+                        "Id": 2,
+                        "Title": "FAQ 2",
+                        "Subtitle": "FAQ 2 Subtitle",
+                        "Description": "FAQ 2 Description"
+                    }
+                ]
+            },
+            {
+                "Id": 2,
+                "Title": "Module 2",
+                "Summary": "Summary of Module 2",
+                "Total content": 8,
+                "Hours to completed": 4.0,
+                "FAQ": []
+            }
+        ]
+    },
+    {
+        "Id": 3,
+        "Title": "Course 3 Title",
+        "Sub title": "Course 3 Subtitle",
+        "Description": "Description of Course 3",
+        "Overview": "Overview of Course 3",
+        "Instructor": [
+            "Instructor 3",
+            "Instructor 4"
+        ],
+        "instructor_id": 103,
+        "Image": "course1.jpg",
+        "Price": 99.99,
+        "Skills": [
+            "Skill C",
+            "Skill D"
+        ],
+        "Is_top_course": true,
+        "Is_recently_viewed_course": false,
+        "Syllabus": [
+            {
+                "Id": 3,
+                "Title": "Module 3",
+                "Summary": "Summary of Module 3",
+                "Total content": 10,
+                "Hours to completed": 5.5,
+                "FAQ": [
+                    {
+                        "Id": 3,
+                        "Title": "FAQ 3",
+                        "Subtitle": "FAQ 3 Subtitle",
+                        "Description": "FAQ 3 Description"
+                    },
+                    {
+                        "Id": 4,
+                        "Title": "FAQ 4",
+                        "Subtitle": "FAQ 4 Subtitle",
+                        "Description": "FAQ 4 Description"
+                    }
+                ]
+            },
+            {
+                "Id": 4,
+                "Title": "Module 4",
+                "Summary": "Summary of Module 4",
+                "Total content": 8,
+                "Hours to completed": 4.0,
+                "FAQ": []
+            }
+        ]
+    },
+    {
+        "Id": 5,
+        "Title": "Course 5 Title",
+        "Sub title": "Course 5 Subtitle",
+        "Description": "Description of Course 5",
+        "Overview": "Overview of Course 5",
+        "Instructor": [
+            "Instructor 5",
+            "Instructor 6"
+        ],
+        "instructor_id": 105,
+        "Image": "course1.jpg",
+        "Price": 99.99,
+        "Skills": [
+            "Skill E",
+            "Skill F"
+        ],
+        "Is_top_course": true,
+        "Is_recently_viewed_course": false,
+        "Syllabus": [
+            {
+                "Id": 5,
+                "Title": "Module 5",
+                "Summary": "Summary of Module 5",
+                "Total content": 10,
+                "Hours to completed": 5.5,
+                "FAQ": [
+                    {
+                        "Id": 5,
+                        "Title": "FAQ 5",
+                        "Subtitle": "FAQ 5 Subtitle",
+                        "Description": "FAQ 5 Description"
+                    },
+                    {
+                        "Id": 6,
+                        "Title": "FAQ 6",
+                        "Subtitle": "FAQ 6 Subtitle",
+                        "Description": "FAQ 6 Description"
+                    }
+                ]
+            },
+            {
+                "Id": 6,
+                "Title": "Module 6",
+                "Summary": "Summary of Module 6",
+                "Total content": 8,
+                "Hours to completed": 4.0,
+                "FAQ": []
+            }
+        ]
+    },
+    {
+        "Id": 7,
+        "Title": "Course 7 Title",
+        "Sub title": "Course 7 Subtitle",
+        "Description": "Description of Course 7",
+        "Overview": "Overview of Course 7",
+        "Instructor": [
+            "Instructor 7",
+            "Instructor 8"
+        ],
+        "instructor_id": 107,
+        "Image": "course1.jpg",
+        "Price": 99.99,
+        "Skills": [
+            "Skill G",
+            "Skill H"
+        ],
+        "Is_top_course": true,
+        "Is_recently_viewed_course": false,
+        "Syllabus": [
+            {
+                "Id": 9,
+                "Title": "Module 9",
+                "Summary": "Summary of Module 9",
+                "Total content": 10,
+                "Hours to completed": 5.5,
+                "FAQ": [
+                    {
+                        "Id": 9,
+                        "Title": "FAQ 9",
+                        "Subtitle": "FAQ 9 Subtitle",
+                        "Description": "FAQ 9 Description"
+                    },
+                    {
+                        "Id": 10,
+                        "Title": "FAQ 10",
+                        "Subtitle": "FAQ 10 Subtitle",
+                        "Description": "FAQ 10 Description"
+                    }
+                ]
+            },
+            {
+                "Id": 10,
+                "Title": "Module 10",
+                "Summary": "Summary of Module 10",
+                "Total content": 8,
+                "Hours to completed": 4.0,
+                "FAQ": []
+            }
+        ]
+    },
+    {
+        "Id": 11,
+        "Title": "Course 11 Title",
+        "Sub title": "Course 11 Subtitle",
+        "Description": "Description of Course 11",
+        "Overview": "Overview of Course 11",
+        "Instructor": [
+            "Instructor 11",
+            "Instructor 12"
+        ],
+        "instructor_id": 111,
+        "Image": "course1.jpg",
+        "Price": 99.99,
+        "Skills": [
+            "Skill I",
+            "Skill J"
+        ],
+        "Is_top_course": true,
+        "Is_recently_viewed_course": false,
+        "Syllabus": [
+            {
+                "Id": 13,
+                "Title": "Module 13",
+                "Summary": "Summary of Module 13",
+                "Total content": 103,
+                "Hours to completed": 5.5,
+                "FAQ": [
+                    {
+                        "Id": 13,
+                        "Title": "FAQ 13",
+                        "Subtitle": "FAQ 13 Subtitle",
+                        "Description": "FAQ 13 Description"
+                    },
+                    {
+                        "Id": 14,
+                        "Title": "FAQ 14",
+                        "Subtitle": "FAQ 14 Subtitle",
+                        "Description": "FAQ 14 Description"
+                    }
+                ]
+            },
+            {
+                "Id": 15,
+                "Title": "Module 15",
+                "Summary": "Summary of Module 15",
+                "Total content": 8,
+                "Hours to completed": 4.0,
+                "FAQ": []
+            }
+        ]
+    },
+    {
+        "Id": 15,
+        "Title": "Course 15 Title",
+        "Sub title": "Course 15 Subtitle",
+        "Description": "Description of Course 15",
+        "Overview": "Overview of Course 15",
+        "Instructor": [
+            "Instructor 15",
+            "Instructor 16"
+        ],
+        "instructor_id": 115,
+        "Image": "course1.jpg",
+        "Price": 99.99,
+        "Skills": [
+            "Skill K",
+            "Skill L"
+        ],
+        "Is_top_course": true,
+        "Is_recently_viewed_course": false,
+        "Syllabus": [
+            {
+                "Id": 17,
+                "Title": "Module 17",
+                "Summary": "Summary of Module 17",
+                "Total content": 10,
+                "Hours to completed": 5.5,
+                "FAQ": [
+                    {
+                        "Id": 17,
+                        "Title": "FAQ 17",
+                        "Subtitle": "FAQ 17 Subtitle",
+                        "Description": "FAQ 17 Description"
+                    },
+                    {
+                        "Id": 18,
+                        "Title": "FAQ 18",
+                        "Subtitle": "FAQ 18 Subtitle",
+                        "Description": "FAQ 18 Description"
+                    }
+                ]
+            },
+            {
+                "Id": 18,
+                "Title": "Module 18",
+                "Summary": "Summary of Module 18",
+                "Total content": 8,
+                "Hours to completed": 4.0,
+                "FAQ": []
+            }
+        ]
+    },
+    {
+        "Id": 19,
+        "Title": "Course 19 Title",
+        "Sub title": "Course 19 Subtitle",
+        "Description": "Description of Course 19",
+        "Overview": "Overview of Course 19",
+        "Instructor": [
+            "Instructor 19",
+            "Instructor 20"
+        ],
+        "instructor_id": 119,
+        "Image": "course1.jpg",
+        "Price": 99.99,
+        "Skills": [
+            "Skill M",
+            "Skill N"
+        ],
+        "Is_top_course": true,
+        "Is_recently_viewed_course": false,
+        "Syllabus": [
+            {
+                "Id": 21,
+                "Title": "Module 21",
+                "Summary": "Summary of Module 21",
+                "Total content": 10,
+                "Hours to completed": 5.5,
+                "FAQ": [
+                    {
+                        "Id": 21,
+                        "Title": "FAQ 21",
+                        "Subtitle": "FAQ 21 Subtitle",
+                        "Description": "FAQ 21 Description"
+                    },
+                    {
+                        "Id": 22,
+                        "Title": "FAQ 22",
+                        "Subtitle": "FAQ 22 Subtitle",
+                        "Description": "FAQ 22 Description"
+                    }
+                ]
+            },
+            {
+                "Id": 23,
+                "Title": "Module 23",
+                "Summary": "Summary of Module 23",
+                "Total content": 8,
+                "Hours to completed": 4.0,
+                "FAQ": []
+            }
+        ]
+    },
+    {
+        "Id": 23,
+        "Title": "Course 23 Title",
+        "Sub title": "Course 23 Subtitle",
+        "Description": "Description of Course 23",
+        "Overview": "Overview of Course 23",
+        "Instructor": [
+            "Instructor O",
+            "Instructor P"
+        ],
+        "instructor_id": 123,
+        "Image": "course1.jpg",
+        "Price": 99.99,
+        "Skills": [
+            "Skill O",
+            "Skill P"
+        ],
+        "Is_top_course": true,
+        "Is_recently_viewed_course": false,
+        "Syllabus": [
+            {
+                "Id": 23,
+                "Title": "Module 23",
+                "Summary": "Summary of Module 23",
+                "Total content": 10,
+                "Hours to completed": 5.5,
+                "FAQ": [
+                    {
+                        "Id": 23,
+                        "Title": "FAQ 23",
+                        "Subtitle": "FAQ 23 Subtitle",
+                        "Description": "FAQ 23 Description"
+                    },
+                    {
+                        "Id": 24,
+                        "Title": "FAQ 24",
+                        "Subtitle": "FAQ 24 Subtitle",
+                        "Description": "FAQ 24 Description"
+                    }
+                ]
+            },
+            {
+                "Id": 25,
+                "Title": "Module 25",
+                "Summary": "Summary of Module 25",
+                "Total content": 8,
+                "Hours to completed": 4.0,
+                "FAQ": []
+            }
+        ]
+    }
+]

@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:phase1/model/postModel.dart';
 import 'package:phase1/model/userModel.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import '../friends/friends.dart';
 
@@ -22,7 +21,6 @@ class _FirstScreenState extends State<FirstScreen> {
   @override
   void initState() {
     super.initState();
-
     initializeData();
   }
 
@@ -35,7 +33,7 @@ class _FirstScreenState extends State<FirstScreen> {
   Future<List<String>> getProfileData() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     String? profileString = pref.getString('profileData');
-    // print('========$profileString');
+    print('========$profileString');
     if (profileString != null) {
       try {
         final decodeprofileData = json.decode(profileString) as List<dynamic>;
@@ -72,13 +70,13 @@ class _FirstScreenState extends State<FirstScreen> {
 
   Future<void> getUserId() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? userIdData = prefs.getString('userid');
+    String? userIdData = prefs.getString('userID');
 
     if (userIdData != null) {
       try {
         loginUsers =
             profileList.firstWhere((user) => user.id.toString() == userIdData);
-        // print(loginUsers?.fullname);
+        print(loginUsers?.fullName);
       } catch (e) {
         print("Error getting user by ID: $e");
       }
@@ -102,10 +100,10 @@ class _FirstScreenState extends State<FirstScreen> {
     });
   }
 
-  // void setData() async {
-  //   await getAllUserData();
-  //   await getUserId();
-  // }
+  void setData() async {
+    await getAllUserData();
+    await getUserId();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -259,8 +257,8 @@ class _FirstScreenState extends State<FirstScreen> {
                   itemBuilder: (BuildContext context, int index) {
                     var data = userPostData[index];
 
-                    postIdDetails =
-                        profileList.firstWhere((user) => user.userId.userId);
+                    postIdDetails = profileList
+                        .firstWhere((user) => user.userId == data.userId);
 
                     //postIdDetails =
                     //     profileList.firstWhere((user) => user.userId.userId);
@@ -350,7 +348,7 @@ class _FirstScreenState extends State<FirstScreen> {
                                 ),
                               )
                             else
-                              const Text(""),
+                              const Text("hello"),
                             Container(
                               height: 350,
                               width: double.infinity,

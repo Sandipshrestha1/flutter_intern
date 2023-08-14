@@ -18,11 +18,11 @@ class Day7 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Socia App',
       debugShowCheckedModeBanner: false,
-      home: Profile(),
-      // Dashboard(),
-      // LoginScreen(),
+      title: 'Socia App',
+      home: //Profile(),
+          Dashboard(),
+      //LoginScreen(),
       //home: HomeScreen(),
 
       // home: FirstScreen(),
