@@ -1,44 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:phase1/model/user_details.dart'; // Import your User model
-
-// class Friends extends StatefulWidget {
-//   Friends({Key? key}) : super(key: key);
-
-//   @override
-//   State<Friends> createState() => _FriendsState();
-
-//   static List<test> getUsers() {
-//     const data = [
-//       {
-//         "username": "Sandy",
-//         "email": "sandy@gmail.com",
-//         "password": "Sandy@123",
-//         "urlimg": "assets/person1.jpg"
-//       },
-//       {
-//         "username": "Samir",
-//         "email": "samir@gmail.com",
-//         "password": "Samir@123",
-//         "urlimg": "assets/person1.jpg"
-//       },
-//     ];
-//     return data.map<test>((json) => test.fromJson(json)).toList();
-//   }
-// }
-
-// class _FriendsState extends State<Friends> {
-//   List<test> users = Friends.gettest(); // Access the list of users
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Center(
-//         child: buildUsers(users),
-//       ),
-//     );
-//   }
-
-//   Widget buildUsers(List<test> users) {
 //     return ListView.builder(
 //       itemCount: users.length,
 //       itemBuilder: (context, index) {
@@ -56,7 +15,6 @@
 //       },
 //     );
 //   }
-// }
 
 import 'package:flutter/material.dart';
 

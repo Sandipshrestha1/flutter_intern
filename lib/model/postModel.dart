@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:phase1/screens/posts/first_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
+import '../screens/dash_board.dart';
 import 'userModel.dart';
 
 class PostModel {
@@ -133,10 +133,8 @@ class _AddPostState extends State<AddPost> {
             onPressed: () {
               setState(() {
                 postDetails();
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const FirstScreen()));
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => const Dashboard()));
               });
             },
             child: const Text(

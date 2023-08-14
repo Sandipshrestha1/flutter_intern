@@ -11,20 +11,23 @@ class userModel {
   String? maritialStatus;
   File profileimage;
   File coverimage;
+  String? imageUrl;
 
   var userId;
 
-  userModel(
-      {this.id,
-      this.fullName,
-      this.email,
-      this.mobileNumber,
-      this.gender,
-      this.dob,
-      this.password,
-      this.maritialStatus,
-      required this.profileimage,
-      required this.coverimage});
+  userModel({
+    this.id,
+    this.fullName,
+    this.email,
+    this.mobileNumber,
+    this.gender,
+    this.dob,
+    this.password,
+    this.maritialStatus,
+    required this.profileimage,
+    required this.coverimage,
+    this.imageUrl,
+  });
 
   factory userModel.fromJson(Map<String, dynamic> json) {
     // File? profileimage;
@@ -50,6 +53,7 @@ class userModel {
       maritialStatus: json["maritialStatus"],
       profileimage: File(profilepath),
       coverimage: File(coverpath),
+      imageUrl: json["imageUrl"],
     );
   }
   Map<String, dynamic> toJson() {
@@ -67,6 +71,7 @@ class userModel {
       "maritialStatus": maritialStatus,
       "image": profileimagePath,
       "coverimage": coverimagePath,
+      "imageUrl": imageUrl
     };
   }
 }

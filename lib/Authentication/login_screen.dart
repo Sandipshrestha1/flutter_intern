@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
       final jsonData = sharedPreferences.getString('dataList');
-      log(jsonData.toString());
+      //log(jsonData.toString());
 
       if (jsonData == null) {
         String jsonData = await rootBundle.loadString('lib/services/user.json');
@@ -71,6 +71,39 @@ class _LoginScreenState extends State<LoginScreen> {
       rethrow;
     }
   }
+
+  // Future<void> fetchUserData() async {
+  //   try {
+  //     SharedPreferences sharedPreferences =
+  //         await SharedPreferences.getInstance();
+  //     String? jsonString = sharedPreferences.getString('dataList');
+
+  //     if (jsonString == null) {
+  //       String userString;
+  //       try {
+  //         userString = await rootBundle.loadString('assets/services/user.json');
+  //       } catch (e) {
+  //         print("Error loading 'user.json': $e");
+  //         return;
+  //       }
+  //       final jsonData = json.decode(userString);
+
+  //       if (jsonData is List<dynamic>) {
+  //         usersData = jsonData.map((json) => userModel.fromJson(json)).toList();
+  //       } else if (jsonData is Map<String, dynamic>) {
+  //         usersData.add(userModel.fromJson(jsonData));
+  //       }
+  //       List<Map<String, dynamic>> jsonDataList =
+  //           usersData.map((cv) => cv.toJson()).toList();
+
+  //       String jsonDataString = json.encode(jsonDataList);
+  //       sharedPreferences.setString('dataList', jsonDataString);
+  //     }
+  //   } catch (e) {
+  //     //  print(e);
+  //     rethrow;
+  //   }
+  // }
 
   Future<List<String>> getUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

@@ -237,6 +237,7 @@ import 'package:flutter/material.dart';
 import 'package:phase1/model/postModel.dart';
 import 'package:phase1/model/userModel.dart';
 import 'package:phase1/screens/friends/friends.dart';
+import 'package:phase1/screens/friends/friends_details.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -462,34 +463,34 @@ class _HomeScreenState extends State<HomeScreen> {
                                     decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
                                     ),
-                                    child: InkWell(
-                                      onTap: () async {
-                                        SharedPreferences prefs =
-                                            await SharedPreferences
-                                                .getInstance();
-                                        prefs.setString('profileData',
-                                            data.userId.toString());
-                                        // ignore: use_build_context_synchronously
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    Friends()));
-                                      },
-                                      child: ClipOval(
-                                          child: loginUsers
-                                                          ?.profileimage.path !=
-                                                      null &&
-                                                  loginUsers!.profileimage != ""
-                                              ? Image(
-                                                  height: 40,
-                                                  width: 40,
-                                                  image: FileImage(
-                                                      loginUsers!.profileimage),
-                                                  fit: BoxFit.cover,
-                                                )
-                                              : const Text('No Image')),
-                                    ),
+                                    // child: InkWell(
+                                    //onTap: () async {
+                                    // SharedPreferences prefs =
+                                    //     await SharedPreferences
+                                    //         .getInstance();
+                                    // prefs.setString('profileData',
+                                    //     data.userId.toString());
+                                    //  ignore: use_build_context_synchronously
+                                    // Navigator.push(
+                                    //     context,
+                                    //     MaterialPageRoute(
+                                    //         builder: (context) =>
+                                    //             const FriendsDetails()));
+                                    //  },
+                                    //   child: ClipOval(
+                                    //       child: loginUsers
+                                    //                       ?.profileimage.path !=
+                                    //                   null &&
+                                    //               loginUsers!.profileimage != ""
+                                    //           ? Image(
+                                    //               height: 40,
+                                    //               width: 40,
+                                    //               image: FileImage(
+                                    //                   loginUsers!.profileimage),
+                                    //               fit: BoxFit.cover,
+                                    //             )
+                                    //           : const Text('No Image')),
+                                    // ),
                                   ),
                                   const SizedBox(
                                     height: 20,

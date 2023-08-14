@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:phase1/model/postModel.dart';
 import 'package:phase1/model/userModel.dart';
+import 'package:phase1/screens/friends/friends_details.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../friends/friends.dart';
 
@@ -294,7 +295,7 @@ class _FirstScreenState extends State<FirstScreen> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    Friends()));
+                                                    const FriendsDetails()));
                                       },
                                       child: ClipOval(
                                           child: loginUsers

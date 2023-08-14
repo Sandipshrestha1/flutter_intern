@@ -214,10 +214,10 @@ class CustomSearch extends SearchDelegate {
                         image: FileImage(result.profileimage),
                         fit: BoxFit.cover,
                       )
-                    : const Image(
+                    : Image(
                         height: 60,
                         width: 60,
-                        image: AssetImage('assets/person1.jpg'),
+                        image: AssetImage('${result.imageUrl}'),
                         fit: BoxFit.cover,
                       ),
               ),
